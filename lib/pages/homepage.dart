@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ui_designs/pages/styles/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -107,92 +108,88 @@ class _HomePageState extends State<HomePage> {
             ),
             Positioned(
               bottom: 0,
-              child: Container(
-                height: _height * 0.40,
-                width: _width,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                  child: Column(
-                    children: [
-                      Text(
-                        imageslist[currentindex][1],
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.black87.withOpacity(0.7)),
-                      ),
-                      const SizedBox(height: 25),
-                      Row(
-                        children: [
-                          Text(
-                            imageslist[currentindex][2],
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.yellow[700]),
-                          ),
-                          SizedBox(width: 10),
-                          RatingBar.builder(
-                            initialRating: 4.5,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemSize: 25,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                            itemBuilder: (context, _) => const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            onRatingUpdate: (rating) {
-                              print(rating);
-                            },
-                          ),
-                          SizedBox(width: 10),
-                          const Text(
-                            "(4.2/70 reviews)",
-                            style: TextStyle(color: Colors.grey, fontSize: 12),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 25),
-                      RaisedButton(
-                        onPressed: () {},
-                        color: Colors.yellow[700],
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: _width * 0.25, vertical: 15),
-                          child: const Text(
-                            'ADD TO CARD',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              child: bottumContainer(_height, _width),
             ),
           ],
         ),
       ),
     );
   }
+
+  Container bottumContainer(double _height, double _width) {
+    return Container(
+      height: _height * 0.40,
+      width: _width,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                imageslist[currentindex][1],
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.black87.withOpacity(0.7)),
+              ),
+              const SizedBox(height: 25),
+              Row(
+                children: [
+                  Text(
+                    imageslist[currentindex][2],
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: AppColor.primarycolor),
+                  ),
+                  SizedBox(width: 10),
+                  RatingBar.builder(
+                    initialRating: 4.5,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemSize: 25,
+                    itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: AppColor.primarycolor,
+                    ),
+                    onRatingUpdate: (rating) {
+                      print(rating);
+                    },
+                  ),
+                  SizedBox(width: 10),
+                  const Text(
+                    "(4.2/70 reviews)",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 25),
+              RaisedButton(
+                onPressed: () {},
+                color: AppColor.primarycolor,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: _width * 0.25, vertical: 15),
+                  child: const Text(
+                    'ADD TO CARD',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
-//
-// Container(
-// height: 5,
-// width: 35,
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.circular(10),
-// color: Colors.black54,
-// ),
-// )
